@@ -7,6 +7,10 @@
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.6",
     "@mui/styled-engine-sc": "^5.8.0",
+    "bootstrap": "^5.2.0-beta1",
+    "react-bootstrap": "^2.4.0",
+    "react-bootstrap-validation": "^0.1.11",
+    "react-router-dom": "^6.3.0",
     "styled-components": "^5.3.5"
   }
 }
