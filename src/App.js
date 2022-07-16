@@ -1,8 +1,10 @@
 import React from 'react';
+// eslint-disable-next-line
 import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+// eslint-disable-next-line
 import Home from './pages/home';
+// eslint-disable-next-line
 import Registro from './pages/reg';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {

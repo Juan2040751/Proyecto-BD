@@ -1,5 +1,5 @@
 import React from 'react';
-import img from '../fondoMande';
+import img from '../fondoMande.jpg'
 import './reg.css';
 
 const reg = () => {
