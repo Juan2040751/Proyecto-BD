@@ -1,0 +1,9 @@
+.form-control-LT{
+    background: none;
+}
+.containerLogin{
+    min-width: 280px;    
+}
+@media (max-width: 800px) {
+    
+}

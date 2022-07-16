@@ -1,7 +1,7 @@
 import React from 'react';
 import img from '../fondoMande.jpg'
+import { Link } from "react-router-dom";
 import './reg.css';
-
 const reg = () => {
   return (
     <div className='Registro'>
@@ -20,7 +20,7 @@ const reg = () => {
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="age">Edad</label>
-                <input type="number" className="form-control" id="inputAge" placeholder="Edad, ej: 17" required />
+                <input type="number" min="0" className="form-control" id="inputAge" placeholder="Edad, ej: 17" required />
               </div>
 
               <div className="form-group">
@@ -29,6 +29,7 @@ const reg = () => {
               </div>
 
             </div>
+
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="barrio">Barrio</label>
@@ -40,6 +41,7 @@ const reg = () => {
                 <input type="text" className="form-control" id="inputCalle" placeholder="Calle, ej: 5ta" required />
               </div>
             </div>
+
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="carrera">Carrera</label>
@@ -50,14 +52,18 @@ const reg = () => {
                 <label htmlFor="cuidad">Cuidad</label>
                 <input type="text" className="form-control" id="inputCuidad" placeholder="Calle, ej: Cali" required />
               </div>
-
             </div>
 
             <div className="continuarReg">
               Escoge tu rol
               <div className="btnReg">
-                <button type="submit" className="btnRegsSG">Trabajador</button>
+                <Link to="/registro/trabajador">
+                  <button type="submit" className="btnRegsSG">Trabajador</button>
+                </Link>
+                <Link to="/registro/usuario">
                 <button type="submit" className="btnRegsLG">Usuario</button>
+                </Link>
+                
               </div>
             </div>
 
