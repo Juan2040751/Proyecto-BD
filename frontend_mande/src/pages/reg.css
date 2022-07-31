@@ -18,7 +18,7 @@
 
 .containerReg {
     max-width: 700px;
-    min-width: 280px;
+    min-width: 300px;
     font-size: 25px;
     width: 100%;
     background: #D4EFDF;
@@ -34,7 +34,7 @@
 }
 @media (max-width: 800px) {
     .Registro{
-        height: 130vh;
+        height: 120vh;
     }
     .RegistroT{
         height: 100vh;
