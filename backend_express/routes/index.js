@@ -1,11 +1,9 @@
-const { Router } = require('express');
-const router = Router();
+var express = require('express');
+var router = express.Router();
 
-const { getPersona, getPersonaById, createPersona } = require('./db_pool_connect');
-
-router.get('/persona', getPersona);
-router.get('/persona/:id', getPersonaById);
-router.post('/users', createPersona);
-
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Express' });
+});
 
 module.exports = router;

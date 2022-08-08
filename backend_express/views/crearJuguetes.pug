@@ -1,0 +1,32 @@
+head
+  meta(charset='utf-8')
+  title Title2
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css')
+
+  body
+    p test
+    .modal-dialog
+        .modal-content
+          // Modal Header
+          .modal-header
+            button.close(type="button", data-dismiss="modal")
+              span(aria-hidden="true") ×
+              span.sr-only Close
+            h4#myModalLabel.modal-title
+              | Crear usuario
+          // Modal Body
+          .modal-body
+            form(role='form' method='POST' action='http://localhost:3000/mascotas')
+              div.form-group
+                label(for='ptype') Ptype:
+                input#name.form-control(type='text', placeholder='ppp' name='ptype')
+              div.form-group
+                label(for='pet_name') Pet Name:
+                input#name.form-control(type='text', placeholder='oso' name='pet_name')
+              div.form-group
+                label(for='age') Pet Age:
+                input#name.form-control(type='text', placeholder='1' name='age')
+              button.btn.btn-primary(type="submit", name="asdf") Create
+          // Modal Footer
+          .modal-footer
+            h4 footer

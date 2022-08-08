@@ -1,41 +1,30 @@
-const { Pool } = require('pg');
+const Pool = require('pg-pool');
+const fs = require('fs')
 
-const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    password: 'mysecretpassword',
-    database: 'mande_db',
-    port: '5432',
-    max: 10, 
-    idleTimeoutMillis: 30000, 
-});
+var config = require('./config')
+console.log(config);
+const pool = new Pool(config);
 
-const getPersona = async (req, res) => {
-    const response = await pool.query('SELECT * FROM Persona');
-    res.status(200).json(response.rows);
+pool.on('error', function (err, client) {
+  // if an error is encountered by a client while it sits idle in the pool
+  // the pool itself will emit an error event with both the error and
+  // the client which emitted the original error
+  // this is a rare occurrence but can happen if there is a network partition
+  // between your application and the database, the database restarts, etc.
+  // and so you might want to handle it and at least log it out
+  console.error('idle client error', err.message, err.stack)
+})
+
+//export the query method for passing queries to the pool
+function query(text, values, callback) {
+  console.log('query:', text, values);
+  return pool.query(text, values, callback);
 };
 
-const getPersonaById = async (req, res) => {
-    const id = parseInt(req.params.id);
-    const response = await pool.query('SELECT * FROM Persona WHERE id = $1', [id]);
-    res.json(response.rows);
+// the pool also supports checking out a client for
+// multiple operations, such as a transaction
+function connect(callback) {
+  return pool.connect(callback);
 };
 
-const createPersona = async (req, res) => {
-    const { persona_identificacion, persona_edad, persona_nombre } = req.body;
-    const response = await pool.query('INSERT INTO Persona (persona_identificacion, persona_edad, persona_nombre) VALUES ($1, $2, $3)', [persona_identificacion, persona_edad, persona_nombre]);
-    res.json({
-        message: 'Persona Added successfully',
-        body: {
-            Persona: {persona_identificacion, persona_edad, persona_nombre}
-        }
-    })
-};
-
-
-
-module.exports = {
-    getPersona,
-    getPersonaById,
-    createPersona
-};
+module.exports = connect;
