@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import img from '../fondoMande.jpg';
-import { Link } from "react-router-dom";
+import { Redirect } from '../App';
 import axios from 'axios';
 import './reg.css';
 
@@ -11,26 +11,34 @@ class reg extends Component {
     this.state = {
       persona_nombre: '',
       persona_edad: '',
-      persona_identificacion: ''
+      persona_identificacion: '',
+      direccion_carrera:'',
+      direccion_calle:'',
+      direccion_barrio:'',
+      direccion_ciudad:'',
+      role:''
     }
   }
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
 
+  
   submitHandler = e => {
     e.preventDefault()
     console.log(this.state)
-    axios.post('http://127.0.0.1:3000/persona', this.state)
+    axios.post('http://127.0.0.1:3000/persona/', this.state)
       .then(response => {
-        console.log(response)
+        console.log(response.data)
+        this.props.Redirect(response.data)
       })
       .catch(error => {
         console.log(error)
+        console.log('no mi rey')
       })
   }
   render() {
-    const { persona_nombre, persona_edad, persona_identificacion } = this.state
+    const { persona_nombre, persona_edad, persona_identificacion, direccion_barrio,direccion_calle,direccion_carrera,direccion_ciudad} = this.state
     return (
       <div className='Registro'>
         <div className='RegistroConteiner'>
@@ -59,37 +67,33 @@ class reg extends Component {
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="barrio">Barrio</label>
-                  <input type="text" className="form-control" id="inputBarrio" placeholder="Barrio, ej: Lido" />
+                  <input type="text" className="form-control" name={'direccion_barrio'} value={direccion_barrio} onChange={this.changeHandler} placeholder="Barrio, ej: Lido" required />
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="calle">Calle</label>
-                  <input type="text" className="form-control" id="inputCalle" placeholder="Calle, ej: 5ta" />
+                  <input type="text" className="form-control" name={'direccion_calle'} value={direccion_calle} onChange={this.changeHandler}  placeholder="Calle, ej: 5ta" required/>
                 </div>
               </div>
 
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="carrera">Carrera</label>
-                  <input type="text" className="form-control" id="inputCarrera" placeholder="Carrera, ej: 15" />
+                  <input type="text" className="form-control" name={'direccion_carrera'} value={direccion_carrera} onChange={this.changeHandler} placeholder="Carrera, ej: 15" required/>
                 </div>
 
                 <div className="form-group">
                   <label htmlFor="cuidad">Ciudad</label>
-                  <input type="text" className="form-control" id="inputCuidad" placeholder="Calle, ej: Cali" />
+                  <input type="text" className="form-control" name={'direccion_ciudad'} value={direccion_ciudad} onChange={this.changeHandler} placeholder="Calle, ej: Cali" required/>
                 </div>
               </div>
 
               <div className="continuarReg">
                 Escoge tu rol
                 <div className="btnReg">
-                <button type="submit" className="btnRegsSG">Trabajador</button>
-                  <Link type='submit' to="/registro/usuario">
-                    
-                  </Link>
-                  <Link to="/registro/usuario">
-                    <button type="submit" className="btnRegsLG">Usuario</button>
-                  </Link>
+                <button  onClick={() => this.setState({ role: 'trabajador' })} type="submit" className="btnRegsSG">Trabajador</button>
+                <button  onClick={() => this.setState({ role: 'usuario' })} type="submit" className="btnRegsLG">Usuario</button>
+                  
 
                 </div>
               </div>
@@ -106,5 +110,6 @@ class reg extends Component {
   }
 
 }
+
 
 export default reg
