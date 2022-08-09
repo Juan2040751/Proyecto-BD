@@ -12,7 +12,7 @@ const login = () => {
                         <Link to="/iniciarSeccion/trabajador">
                             <button className="bot-loginT">Trabajador</button>
                         </Link>
-                        <Link to="http://localhost:3000/iniciarSeccion/usuario">
+                        <Link to="/iniciarSeccion/usuario">
                             <button className="bot-loginU">Usuario</button>
                         </Link>
                     </div>

@@ -10,7 +10,7 @@ const app = express();
 // Middlewares
 app.use(morgan('tiny'));
 app.use(cors({
-    origin: ["http://localhost:3001","http://127-0.0.1:3001"]
+    origin: ["http://localhost:5000","http://127-0.0.1:5000"]
 }));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));

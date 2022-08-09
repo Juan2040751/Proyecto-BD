@@ -51,8 +51,6 @@ CREATE TABLE IF NOT EXISTS Usuario(
 
 CREATE TABLE IF NOT EXISTS Trabajador(
     id_trabajador SERIAL NOT NULL,
-    telefono_trabajador VARCHAR(16) UNIQUE NOT NULL,
-    correo_trabajador VARCHAR(32) UNIQUE NOT NULL,
     trabajador_direcFotoPer VARCHAR(32) NOT NULL,
     trabajador_direcFotoCed VARCHAR(32) NOT NULL,
     id_persona SERIAL,

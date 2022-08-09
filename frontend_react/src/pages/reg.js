@@ -25,9 +25,8 @@ class reg extends Component {
   
   submitHandler = e => {
     e.preventDefault()
-    const response = axios.post('http://127.0.0.1:3000/persona/', this.state);
-    var dir = "http://localhost:3001/registro/"+role;
-    console.log(dir);
+    axios.post('http://127.0.0.1:3000/persona/', this.state);
+    const dir = "http://localhost:5000/registro/"+role;
     window.location = dir;
   }
   render() {
