@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import img from '../fondoMande.jpg';
-import { Redirect } from '../App';
 import axios from 'axios';
 import './reg.css';
+var role='';
 
 class reg extends Component {
   constructor(props) {
@@ -15,8 +15,7 @@ class reg extends Component {
       direccion_carrera:'',
       direccion_calle:'',
       direccion_barrio:'',
-      direccion_ciudad:'',
-      role:''
+      direccion_ciudad:''
     }
   }
   changeHandler = e => {
@@ -26,19 +25,14 @@ class reg extends Component {
   
   submitHandler = e => {
     e.preventDefault()
-    console.log(this.state)
-    axios.post('http://127.0.0.1:3000/persona/', this.state)
-      .then(response => {
-        console.log(response.data)
-        this.props.Redirect(response.data)
-      })
-      .catch(error => {
-        console.log(error)
-        console.log('no mi rey')
-      })
+    const response = axios.post('http://127.0.0.1:3000/persona/', this.state);
+    var dir = "http://localhost:3001/registro/"+role;
+    console.log(dir);
+    window.location = dir;
   }
   render() {
     const { persona_nombre, persona_edad, persona_identificacion, direccion_barrio,direccion_calle,direccion_carrera,direccion_ciudad} = this.state
+    
     return (
       <div className='Registro'>
         <div className='RegistroConteiner'>
@@ -91,8 +85,8 @@ class reg extends Component {
               <div className="continuarReg">
                 Escoge tu rol
                 <div className="btnReg">
-                <button  onClick={() => this.setState({ role: 'trabajador' })} type="submit" className="btnRegsSG">Trabajador</button>
-                <button  onClick={() => this.setState({ role: 'usuario' })} type="submit" className="btnRegsLG">Usuario</button>
+                <button  onClick={() =>  role= 'trabajador' } type="submit" className="btnRegsSG">Trabajador</button>
+                <button  onClick={() =>  role= 'usuario' } type="submit" className="btnRegsLG">Usuario</button>
                   
 
                 </div>
@@ -110,6 +104,9 @@ class reg extends Component {
   }
 
 }
+
+
+
 
 
 export default reg

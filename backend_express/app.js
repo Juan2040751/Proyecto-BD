@@ -9,7 +9,9 @@ const app = express();
 
 // Middlewares
 app.use(morgan('tiny'));
-app.use(cors());
+app.use(cors({
+    origin: ["http://localhost:3001","http://127-0.0.1:3001"]
+}));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(fileUpload({useTempFiles: true}));

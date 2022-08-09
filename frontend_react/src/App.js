@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './pages/home'
-import { useNavigate } from "react-router-dom";
+
 import Registro from './pages/reg'
 import RegistroTrabajador from './pages/registros/regTrabajador'
 import RegistroUsuario from './pages/registros/regUsuario'
@@ -27,8 +27,4 @@ function App() {
     );
 }
 
-export function Redirect(props){
-    const navigate= useNavigate()
-    return (<App navigate={navigate}/>)
-  }
 export default App

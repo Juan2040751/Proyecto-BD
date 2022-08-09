@@ -111,8 +111,8 @@ router.post('/', (req, res, next) => {
 
   }
   connect(insertarPersona);
-  
-  res.send('http://localhost:3001/registro'+req.body.role); 
+ 
+  //res.redirect(302,'http://127.0.0.1:3001/registro/'); 
 })
 
 module.exports = router;
