@@ -4,6 +4,7 @@ import img from './fondoMande.jpg'
 import axios from 'axios';
 import './regTrabajador.css';
 
+
 class regTrabajador extends Component {
     constructor(props) {
         super(props)
@@ -11,6 +12,7 @@ class regTrabajador extends Component {
         this.state = {
             trabajador_direcFotoPer: null,
             trabajador_direcFotoCed: null
+
         }
         
     }
@@ -24,11 +26,22 @@ class regTrabajador extends Component {
         const {trabajador_direcFotoCed,trabajador_direcFotoPer} = this.state
         e.preventDefault();
         const formdata = new FormData();
-        formdata.append('trabajador_direcFotoPer', trabajador_direcFotoPer)
-        formdata.append('trabajador_direcFotoCed', trabajador_direcFotoCed)
-        axios.post('http://127.0.0.1:3000/persona/', formdata);
-        const dir = "http://localhost:5000/registro/";
-        window.location = dir;
+        const formdataFP = new FormData();
+        formdataFP.append("file", trabajador_direcFotoPer)
+        formdataFP.append("upload_preset","proyectodb")
+        axios.post('https://api.cloudinary.com/v1_1/proyectobdjuan/image/upload', formdataFP).then((response) => {
+            formdata.append("trabajador_direcFotoPer",response.data.secure_url)
+        });
+        const formdataFC = new FormData();
+        formdataFC.append("file", trabajador_direcFotoCed)
+        formdataFC.append("upload_preset","proyectodb")
+        axios.post('https://api.cloudinary.com/v1_1/proyectobdjuan/image/upload', formdataFC).then((response) => {  
+            formdata.append("trabajador_direcFotoCed",response.data.secure_url)
+        });
+        axios.get('http://127.0.0.1:3000/persona/')
+        //axios.post('http://127.0.0.1:3000/trabajador/', formdata);
+        //const dir = "http://localhost:5000/registro/";
+        //window.location = dir;
     }
     render() {
         return (
@@ -41,14 +54,14 @@ class regTrabajador extends Component {
                             <div className="form-row">
                                 <div className="form-group">
                                     <label htmlFor="name">Foto del documento de Identidad</label>
-                                    <input type='file' name={'trabajador_direcFotoPer'} onChange={this.changeHandler} accept="image/*" className="form-control-RT" required />
+                                    <input type='file' name={'trabajador_direcFotoCed'} onChange={this.changeHandler} accept="image/*" className="form-control-RT" required />
                                 </div>
                             </div>
 
                             <div className="form-row">
                                 <div className="form-group">
                                     <label htmlFor="age">Foto de perfil</label>
-                                    <input type='file'  name={'trabajador_direcFotoCed'} onChange={this.changeHandler} accept="image/*" className="form-control-RT"  required />
+                                    <input type='file'  name={'trabajador_direcFotoPer'} onChange={this.changeHandler} accept="image/*" className="form-control-RT"  required />
                                 </div>
                             </div>
 

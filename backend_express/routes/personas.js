@@ -59,7 +59,7 @@ router.get('/:id', function (req, res, next) {
     }
 
     //use the client for executing the query
-    client.query(`SELECT * FROM Persona WHERE id_persona=${req.params.id};`, function (err, result) {
+    client.query(`SELECT * FROM Persona WHERE persona_identificacion=${req.params.id};`, function (err, result) {
       //call `done(err)` to release the client back to the pool (or destroy it if there is an error)
       done(err);
 

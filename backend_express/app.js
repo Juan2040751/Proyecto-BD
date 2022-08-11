@@ -4,8 +4,10 @@ const fileUpload = require('express-fileupload');
 const history = require('connect-history-api-fallback');
 const path = require('path');
 const personaRouter = require('./routes/personas');
+const trabajadorRouter = require('./routes/trabajador');
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 
 // Middlewares
 app.use(morgan('tiny'));
@@ -15,8 +17,9 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(fileUpload({useTempFiles: true}));
-
+app.use(bodyParser.urlencoded({extended: true}))
 app.use('/persona', personaRouter);
+app.use('/trabajador', trabajadorRouter);
 
 // Middlewares for Vue
 app.use(history());

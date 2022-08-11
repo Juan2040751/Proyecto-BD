@@ -53,8 +53,8 @@ CREATE TABLE IF NOT EXISTS Trabajador(
     id_trabajador SERIAL NOT NULL,
     trabajador_direcFotoPer VARCHAR(32) NOT NULL,
     trabajador_direcFotoCed VARCHAR(32) NOT NULL,
-    id_persona SERIAL,
-    id_labor SERIAL,
+    id_persona INTEGER,
+    id_labor INTEGER,
     PRIMARY KEY(id_trabajador),
     CONSTRAINT FK_constraint_trabajador_persona FOREIGN KEY(id_persona) REFERENCES Persona(id_persona)
 );
