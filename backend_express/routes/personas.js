@@ -5,9 +5,7 @@ var router = express.Router();
 
 const connect = require('./db_pool_connect');
 
-/**
- * Listar todos los usuarios
- */
+//retorna todas las personas de la BD
 router.get('/', function (req, res, next) {
   connect(function (err, client, done) {
     if (err) {
@@ -28,6 +26,7 @@ router.get('/', function (req, res, next) {
 
 })
 
+//retorna todas las direcciones de la base ee datos 
 router.get('/direccion', function (req, res, next) {
   connect(function (err, client, done) {
     if (err) {
@@ -49,17 +48,15 @@ router.get('/direccion', function (req, res, next) {
   });
 
 })
-/**
- * Buscar un usuario dado su id_usuario
- */
+
+//retorna una persona al pasarle su cedula
 router.get('/:id', function (req, res, next) {
   connect(function (err, client, done) {
     if (err) {
       return console.error('error fetching client from pool', err);
     }
-
     //use the client for executing the query
-    client.query(`SELECT * FROM Persona WHERE persona_identificacion=${req.params.id};`, function (err, result) {
+    client.query(`SELECT * FROM persona WHERE persona_identificacion=${req.params.id};`, function (err, result) {
       //call `done(err)` to release the client back to the pool (or destroy it if there is an error)
       done(err);
 
@@ -72,10 +69,7 @@ router.get('/:id', function (req, res, next) {
 
 })
 
-/**
- * Crear un usuario dados su nombre de usuario y password. 
- * !Antes de crearlo debería verificar si ya existe.
- */
+//crea una nueva persona junto con su direccion
 router.post('/', (req, res, next) => {
   
   const insertarPersona = async (err, client, done) => {
@@ -102,7 +96,6 @@ router.post('/', (req, res, next) => {
           if (err) {
             return console.error('error running query', err);
           }
-          
         });
     
       }

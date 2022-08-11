@@ -1,6 +1,6 @@
 -- Database: mande_db
 
--- DROP DATABASE mande_db;
+--DROP DATABASE mande_db;
 
 CREATE DATABASE mande_db
     WITH 
@@ -20,7 +20,7 @@ CREATE TYPE medioDePago AS ENUM('Débito', 'Crédito');
 
 CREATE TABLE IF NOT EXISTS Persona(
     id_persona SERIAL NOT NULL,
-    persona_identificacion VARCHAR(16) UNIQUE NOT NULL,
+    persona_identificacion INTEGER UNIQUE NOT NULL,
     persona_edad VARCHAR(2) CHECK (persona_edad >= '18') NOT NULL,
     persona_nombre VARCHAR(64) NOT NULL,
     PRIMARY KEY(id_persona),
@@ -51,22 +51,25 @@ CREATE TABLE IF NOT EXISTS Usuario(
 
 CREATE TABLE IF NOT EXISTS Trabajador(
     id_trabajador SERIAL NOT NULL,
-    trabajador_direcFotoPer VARCHAR(32) NOT NULL,
-    trabajador_direcFotoCed VARCHAR(32) NOT NULL,
+    trabajador_direcFotoPer VARCHAR(128) NOT NULL,
+    trabajador_direcFotoCed VARCHAR(128) NOT NULL,
     id_persona INTEGER,
-    id_labor INTEGER,
     PRIMARY KEY(id_trabajador),
     CONSTRAINT FK_constraint_trabajador_persona FOREIGN KEY(id_persona) REFERENCES Persona(id_persona)
 );
-
 CREATE TABLE IF NOT EXISTS Labor(
     id_labor SERIAL NOT NULL,
+    labor_nombre VARCHAR(64) NOT NULL,
+    PRIMARY KEY(id_labor)
+);
+CREATE TABLE IF NOT EXISTS Trabajo(
+    id_labor INTEGER,
+    id_trabajador INTEGER,
     labor_tipoUnidad VARCHAR(16) NOT NULL,
     labor_precio INTEGER NOT NULL,
-    labor_nombre VARCHAR(64) NOT NULL,
-    id_trabajador SERIAL,
-    PRIMARY KEY(id_labor),
-    CONSTRAINT FK_constraint_labor_trabajador FOREIGN KEY(id_trabajador) REFERENCES Trabajador(id_trabajador)
+    PRIMARY KEY(id_labor,id_trabajador),
+    CONSTRAINT FK_constraint_trabajo_trabajador FOREIGN KEY(id_trabajador) REFERENCES Trabajador(id_trabajador),
+    CONSTRAINT FK_constraint_trabajo_labor FOREIGN KEY(id_labor) REFERENCES Labor(id_labor) 
 );
 
 CREATE TABLE IF NOT EXISTS Pago(
