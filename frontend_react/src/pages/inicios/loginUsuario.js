@@ -30,7 +30,7 @@ const loginTrabajador = () => {
 
 
                         <div className="continuarReg">
-                                <button type="submit" className="btnRT-terminar">Terminar registro</button>
+                                <button type="submit" className="btnRT-terminar">Iniciar Sesion</button>
                         </div>
 
                     </form >

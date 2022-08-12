@@ -41,10 +41,10 @@ CREATE TABLE IF NOT EXISTS Direccion(
 CREATE TABLE IF NOT EXISTS Usuario(
     id_usuario SERIAL NOT NULL,
     telefono_usuario VARCHAR(16) UNIQUE NOT NULL,
-    correo_usuario VARCHAR(32) UNIQUE NOT NULL,
+    correo_usuario VARCHAR(64) UNIQUE NOT NULL,
     usuario_medioPago medioDePago NOT NULL,
-    usuario_direcFotoSerPub VARCHAR(32) NOT NULL,
-    id_persona SERIAL,
+    usuario_direcFotoSerPub VARCHAR(128) NOT NULL,
+    id_persona  INTEGER,
     PRIMARY KEY(id_usuario),
     CONSTRAINT FK_constraint_usuario_persona FOREIGN KEY(id_persona) REFERENCES Persona(id_persona)
 );

@@ -5,6 +5,7 @@ const history = require('connect-history-api-fallback');
 const path = require('path');
 const personaRouter = require('./routes/personas');
 const trabajadorRouter = require('./routes/trabajador');
+const usuarioRouter = require('./routes/usuario');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -20,7 +21,7 @@ app.use(fileUpload({useTempFiles: true}));
 app.use(bodyParser.urlencoded({extended: true}))
 app.use('/persona', personaRouter);
 app.use('/trabajador', trabajadorRouter);
-
+app.use('/usuario', usuarioRouter);
 // Middlewares for Vue
 app.use(history());
 app.use(express.static(path.join(__dirname, 'public')));

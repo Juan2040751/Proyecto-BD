@@ -25,7 +25,7 @@ class reg extends Component {
   
   submitHandler = e => {
     e.preventDefault()
-    axios.post('http://127.0.0.1:3000/persona/', this.state);
+    axios.post('http://localhost:3000/persona/', this.state);
     const dir = "http://localhost:5000/registro/"+role+"/"+this.state.persona_identificacion;
     window.location = dir;
   }
@@ -41,14 +41,14 @@ class reg extends Component {
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="persona_nombre">Nombre Completo</label>
-                  <input type="text" value={persona_nombre} name={'persona_nombre'} className="form-control" onChange={this.changeHandler} placeholder="Name, ej: Juan Lozano" required />
+                  <input type="text" value={persona_nombre} name={'persona_nombre'} className="form-control" onChange={this.changeHandler} placeholder="Name, ej: Juan Viafara" required />
                 </div>
               </div>
 
               <div className="form-row">
                 <div className="form-group">
                   <label htmlFor="persona_edad">Edad</label>
-                  <input type="number" min="0" className="form-control" name={'persona_edad'} value={persona_edad} onChange={this.changeHandler} placeholder="Edad, ej: 17" required />
+                  <input type="number" min="18" className="form-control" name={'persona_edad'} value={persona_edad} onChange={this.changeHandler} placeholder="Edad, ej: 18" required />
                 </div>
 
                 <div className="form-group">

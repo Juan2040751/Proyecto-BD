@@ -13,7 +13,7 @@ class regTrabajador extends Component {
             trabajador_direcFotoCed: null,
             urlFP: '',
             urlFC: '',
-            id_persona: ''
+            id_persona: 0
         }
 
     }
@@ -23,29 +23,29 @@ class regTrabajador extends Component {
 
 
 
-    submitHandler = e => {
+    submitHandler =async e => {
         const { trabajador_direcFotoCed, trabajador_direcFotoPer } = this.state
         e.preventDefault();
         const formdata = new FormData();
         const formdataFP = new FormData();
         formdataFP.append("file", trabajador_direcFotoPer)
         formdataFP.append("upload_preset", "proyectodb")
-        axios.post('https://api.cloudinary.com/v1_1/proyectobdjuan/image/upload', formdataFP).then((response) => {
+        await axios.post('https://api.cloudinary.com/v1_1/proyectobdjuan/image/upload', formdataFP).then((response) => {
             this.setState({ urlFP: response.data.secure_url })
         });
         formdata.append("trabajador_direcFotoPer", this.state.urlFP)
         const formdataFC = new FormData();
         formdataFC.append("file", trabajador_direcFotoCed);
         formdataFC.append("upload_preset", "proyectodb");
-        axios.post('https://api.cloudinary.com/v1_1/proyectobdjuan/image/upload', formdataFC).then((response) => {
+        await axios.post('https://api.cloudinary.com/v1_1/proyectobdjuan/image/upload', formdataFC).then((response) => {
             this.setState({ urlFC: response.data.secure_url })
         });
         formdata.append("trabajador_direcFotoCed", this.state.urlFC);
-        axios.get('http://127.0.0.1:3000/persona/' + window.location.pathname.substring(21)).then((response) => {
+        await axios.get('http://localhost:3000/persona/' + window.location.pathname.substring(21)).then((response) => {
             this.setState({ id_persona: response.data.id_persona })
         });
         formdata.append("id_persona", this.state.id_persona);
-        axios.post('http://127.0.0.1:3000/trabajador/', formdata);
+        axios.post('http://localhost:3000/trabajador/', formdata);
         //const dir = "http://localhost:5000/registro/";
         //window.location = dir;
     }
