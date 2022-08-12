@@ -6,6 +6,7 @@ const path = require('path');
 const personaRouter = require('./routes/personas');
 const trabajadorRouter = require('./routes/trabajador');
 const usuarioRouter = require('./routes/usuario');
+const trabajoRouter = require('./routes/trabajo');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -22,6 +23,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use('/persona', personaRouter);
 app.use('/trabajador', trabajadorRouter);
 app.use('/usuario', usuarioRouter);
+app.use('/trabajo', trabajoRouter);
 // Middlewares for Vue
 app.use(history());
 app.use(express.static(path.join(__dirname, 'public')));

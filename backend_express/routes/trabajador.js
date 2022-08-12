@@ -26,12 +26,13 @@ router.get('/', function (req, res, next) {
 
 //retorna la informacion de un trabajador al pasarle su numero de cedula
 router.get('/:id', function (req, res, next) {
+  console.log("helooooo")
   connect(function (err, client, done) {
     if (err) {
       return console.error('error fetching client from pool', err);
     }
     //use the client for executing the query
-    client.query(`SELECT * FROM trabajador WHERE id_persona=${req.params.id};`, function (err, result) {
+    client.query(`SELECT * FROM trabajador as t NATURAL JOIN Persona as p WHERE persona_identificacion=${req.params.id};`, function (err, result) {
       //call `done(err)` to release the client back to the pool (or destroy it if there is an error)
       done(err);
 

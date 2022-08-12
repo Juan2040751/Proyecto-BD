@@ -18,6 +18,8 @@ CREATE TYPE calificacion AS ENUM('Muy malo', 'Malo', 'Regular', 'Bueno', 'Muy bu
 
 CREATE TYPE medioDePago AS ENUM('Débito', 'Crédito');
 
+CREATE TYPE cobro AS ENUM('Por labor', 'Por hora');
+
 CREATE TABLE IF NOT EXISTS Persona(
     id_persona SERIAL NOT NULL,
     persona_identificacion INTEGER UNIQUE NOT NULL,
@@ -60,12 +62,13 @@ CREATE TABLE IF NOT EXISTS Trabajador(
 CREATE TABLE IF NOT EXISTS Labor(
     id_labor SERIAL NOT NULL,
     labor_nombre VARCHAR(64) NOT NULL,
+    labor_descripcion VARCHAR(256) not null default 'Sin descripcion',
     PRIMARY KEY(id_labor)
 );
 CREATE TABLE IF NOT EXISTS Trabajo(
     id_labor INTEGER,
     id_trabajador INTEGER,
-    labor_tipoUnidad VARCHAR(16) NOT NULL,
+    labor_tipoUnidad cobro NOT NULL,
     labor_precio INTEGER NOT NULL,
     PRIMARY KEY(id_labor,id_trabajador),
     CONSTRAINT FK_constraint_trabajo_trabajador FOREIGN KEY(id_trabajador) REFERENCES Trabajador(id_trabajador),

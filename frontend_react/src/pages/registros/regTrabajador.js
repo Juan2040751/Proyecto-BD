@@ -31,23 +31,23 @@ class regTrabajador extends Component {
         formdataFP.append("file", trabajador_direcFotoPer)
         formdataFP.append("upload_preset", "proyectodb")
         await axios.post('https://api.cloudinary.com/v1_1/proyectobdjuan/image/upload', formdataFP).then((response) => {
-            this.setState({ urlFP: response.data.secure_url })
+            formdata.append("trabajador_direcFotoPer", response.data.secure_url)
         });
-        formdata.append("trabajador_direcFotoPer", this.state.urlFP)
+        
         const formdataFC = new FormData();
         formdataFC.append("file", trabajador_direcFotoCed);
         formdataFC.append("upload_preset", "proyectodb");
         await axios.post('https://api.cloudinary.com/v1_1/proyectobdjuan/image/upload', formdataFC).then((response) => {
-            this.setState({ urlFC: response.data.secure_url })
+            formdata.append("trabajador_direcFotoCed", response.data.secure_url);
         });
-        formdata.append("trabajador_direcFotoCed", this.state.urlFC);
+        
         await axios.get('http://localhost:3000/persona/' + window.location.pathname.substring(21)).then((response) => {
-            this.setState({ id_persona: response.data.id_persona })
+            formdata.append("id_persona",response.data.id_persona);
         });
-        formdata.append("id_persona", this.state.id_persona);
+        
         axios.post('http://localhost:3000/trabajador/', formdata);
-        //const dir = "http://localhost:5000/registro/";
-        //window.location = dir;
+        const dir = "http://localhost:5000/trabajador/"+ window.location.pathname.substring(21);
+        window.location = dir;
     }
     render() {
         return (

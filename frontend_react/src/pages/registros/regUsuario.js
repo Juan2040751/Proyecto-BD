@@ -37,12 +37,9 @@ class regUsuario extends Component {
         await axios.get('http://localhost:3000/persona/' + window.location.pathname.substring(18)).then((response) => {
             formdata.append("id_persona", response.data.id_persona);
         });
-        
-        
-        
         formdata.append("usuario_medioPago", usuario_medioPago);
         formdata.append("correo_usuario", correo_usuario);
-        formdata.append("itelefono_usuario", telefono_usuario);
+        formdata.append("telefono_usuario", telefono_usuario);
         axios.post('http://localhost:3000/usuario/', formdata);
     }
     render() {

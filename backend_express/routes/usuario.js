@@ -31,7 +31,7 @@ router.get('/:id', function (req, res, next) {
       return console.error('error fetching client from pool', err);
     }
     //use the client for executing the query
-    client.query(`SELECT * FROM usuario WHERE id_persona=${req.params.id};`, function (err, result) {
+    client.query(`SELECT * FROM Usuario as u NATURAL JOIN Persona as p WHERE persona_identificacion=${req.params.id};`, function (err, result) {
       //call `done(err)` to release the client back to the pool (or destroy it if there is an error)
       done(err);
 
