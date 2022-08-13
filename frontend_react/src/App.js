@@ -8,7 +8,7 @@ import IniciarSeccion from './pages/login'
 import LoginTrabajador from './pages/inicios/loginTrabajador'
 import LoginUsuario from './pages/inicios/loginUsuario'
 import Trabajador from './pages/app/trabajador'
-import Usuario from './pages/inicios/loginUsuario'
+import Pago from './pages/app/pago'
 function App() {
     return (
         <div>
@@ -22,7 +22,7 @@ function App() {
                     <Route path="/iniciarSeccion/trabajador" element={<LoginTrabajador/>}/>
                     <Route path="/iniciarSeccion/usuario" element={<LoginUsuario/>}/>
                     <Route path="/trabajador/:cc" element={<Trabajador/>}/>
-                    <Route path="/usuario" element={<LoginUsuario/>}/>
+                    <Route path="/usuario/pago/:cc" element={<Pago/>}/>
                 </Routes>
             </Router>
         </div>

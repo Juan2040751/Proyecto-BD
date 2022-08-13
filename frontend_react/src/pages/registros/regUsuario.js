@@ -41,6 +41,8 @@ class regUsuario extends Component {
         formdata.append("correo_usuario", correo_usuario);
         formdata.append("telefono_usuario", telefono_usuario);
         axios.post('http://localhost:3000/usuario/', formdata);
+        const dir = "http://localhost:5000/usuario/pago/"+ window.location.pathname.substring(18);
+        window.location = dir;
     }
     render() {
         const { telefono_usuario, correo_usuario, usuario_medioPago } = this.state

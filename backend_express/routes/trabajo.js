@@ -22,6 +22,47 @@ router.get('/', function (req, res, next) {
     });
   
   })
+  
+//retorna todos las labores de la bd 
+router.get('/labor', function (req, res, next) {
+    connect(function (err, client, done) {
+      if (err) {
+        return console.error('error fetching client from pool', err);
+      }
+  
+      //use the client for executing the query
+      client.query('SELECT * FROM Labor;', function (err, result) {
+        //call `done(err)` to release the client back to the pool (or destroy it if there is an error)
+        done(err);
+  
+        if (err) {
+          return console.error('error running query', err);
+        }
+        res.send(JSON.stringify(result.rows));
+      });
+    });
+  
+  })
+
+//retorna la informacion de todos los trabajadores que realizan cierta labor 
+router.get('/:id_labor', function (req, res, next) {
+    connect(function (err, client, done) {
+      if (err) {
+        return console.error('error fetching client from pool', err);
+      }
+      //use the client for executing the query
+      client.query(`SELECT * FROM Trabajo as w NATURAL JOIN Trabajador as t WHERE id_labor=${req.params.id_labor};`, function (err, result) {
+        //call `done(err)` to release the client back to the pool (or destroy it if there is an error)
+        done(err);
+  
+        if (err) {
+          return console.error('error running query', err);
+        }
+        res.send(JSON.stringify(result.rows[0]));
+      });
+    });
+  
+  })
 
 //ingresa un nuevo trabajo
 router.post('/' ,(req, res, next) => {
