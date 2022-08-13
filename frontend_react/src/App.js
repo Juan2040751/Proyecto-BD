@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route, useParams } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './pages/home'
 import Registro from './pages/reg'
 import RegistroTrabajador from './pages/registros/regTrabajador'
@@ -8,6 +8,7 @@ import IniciarSeccion from './pages/login'
 import LoginTrabajador from './pages/inicios/loginTrabajador'
 import LoginUsuario from './pages/inicios/loginUsuario'
 import Trabajador from './pages/app/trabajador'
+import Usuario from './pages/app/usuario'
 import Pago from './pages/app/pago'
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                     <Route path="/iniciarSeccion/trabajador" element={<LoginTrabajador/>}/>
                     <Route path="/iniciarSeccion/usuario" element={<LoginUsuario/>}/>
                     <Route path="/trabajador/:cc" element={<Trabajador/>}/>
+                    <Route path="/usuario/:cc" element={<Usuario/>}/>
                     <Route path="/usuario/pago/:cc" element={<Pago/>}/>
                 </Routes>
             </Router>

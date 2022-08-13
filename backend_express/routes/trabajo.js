@@ -58,7 +58,7 @@ router.get('/:id_labor', function (req, res, next) {
         if (err) {
           return console.error('error running query', err);
         }
-        res.send(JSON.stringify(result.rows[0]));
+        res.send(JSON.stringify(result.rows));
       });
     });
   
