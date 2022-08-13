@@ -26,7 +26,6 @@ router.get('/', function (req, res, next) {
 
 //retorna la informacion de un trabajador al pasarle su numero de cedula
 router.get('/:id', function (req, res, next) {
-  console.log("helooooo")
   connect(function (err, client, done) {
     if (err) {
       return console.error('error fetching client from pool', err);

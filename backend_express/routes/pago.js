@@ -26,7 +26,6 @@ router.get('/', function (req, res, next) {
 
   //ingresa un nuevo pago
 router.post('/' ,(req, res, next) => {
-    console.log(req.body)
     const insertarPago= async (err, client, done) => {
         if (err) {
           return console.error('error fetching client from pool', err);

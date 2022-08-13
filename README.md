@@ -30,3 +30,5 @@ http://localhost:3000/trabajo/
 http://localhost:3000/trabajo/labor
 *  Para ver la informacion de todos los trabajadores que realizan cierta labor 
 http://localhost:3000/trabajo/:id_labor
+
+* video: https://youtu.be/yPrLRZV45fs

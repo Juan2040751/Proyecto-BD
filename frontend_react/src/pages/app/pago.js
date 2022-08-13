@@ -10,7 +10,6 @@ class pago extends Component {
 
         this.state = {
             id_labor: '',
-            
             labor_tipoUnidad: '',
             labor_precio: '',
         }
@@ -18,7 +17,6 @@ class pago extends Component {
     }
     changeHandler = e => {
         this.setState({ [e.target.name]: e.target.value })
-        console.log(this.state.trab_foto)
     }
 
 
