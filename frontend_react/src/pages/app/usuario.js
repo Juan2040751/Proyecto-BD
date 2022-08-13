@@ -18,7 +18,7 @@ const Usuario = () => {
         <div className='RegistroT'>
             <div className='RegistroConteiner'>
                 <div className='containerReg-RT'>
-                    <h1>Realizar pago</h1>
+                    <h1>Servicio requerido</h1>
                     <form>
                         <div className="form-row">
                             <div className="form-group">

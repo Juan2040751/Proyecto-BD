@@ -76,16 +76,24 @@ CREATE TABLE IF NOT EXISTS Trabajo(
     CONSTRAINT FK_constraint_trabajo_trabajador FOREIGN KEY(id_trabajador) REFERENCES Trabajador(id_trabajador),
     CONSTRAINT FK_constraint_trabajo_labor FOREIGN KEY(id_labor) REFERENCES Labor(id_labor) 
 );
+CREATE TABLE IF NOT EXISTS Servicio(
+    id_servicio SERIAL NOT NULL,
+    calificacion_servicio calificacion NOT NULL default 'Muy bueno',
+    id_trabajo INTEGER,
+    id_usuario INTEGER,
+    PRIMARY KEY(id_servicio),
+    CONSTRAINT FK_constraint_servicio_usuario FOREIGN KEY(id_usuario) REFERENCES Usuario(id_usuario),
+    CONSTRAINT FK_constraint_servicio_trabajo FOREIGN KEY(id_trabajo) REFERENCES Trabajo(id_trabajo)
+);
 
 CREATE TABLE IF NOT EXISTS Pago(
     id_pago SERIAL NOT NULL,
     pago_montoPago INTEGER CHECK (pago_montoPago > 0) NOT NULL,
     pago_descPago VARCHAR(128) NOT NULL default 'Sin descripcion',
-    calificacion_servicio calificacion NOT NULL,
-    id_trabajo INTEGER,
-    id_usuario INTEGER,
+    id_servicio INTEGER,
     PRIMARY KEY(id_pago),
-    CONSTRAINT FK_constraint_pago_trabajo FOREIGN KEY(id_trabajo) REFERENCES Trabajo(id_trabajo),
-    CONSTRAINT FK_constraint_pago_usuario FOREIGN KEY(id_usuario) REFERENCES Usuario(id_usuario)
+    CONSTRAINT FK_constraint_pago_servicio FOREIGN KEY(id_servicio) REFERENCES Servicio(id_servicio)
 );
+
+
 
